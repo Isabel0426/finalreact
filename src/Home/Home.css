@@ -1,0 +1,20 @@
+.banner{
+    background-image: url('https://firebasestorage.googleapis.com/v0/b/logincomfamaisabel.appspot.com/o/bannerx2.jpg?alt=media&token=3d5af033-8ebb-4f04-8f32-53d967c94646');
+    background-position: top center;
+    background-size: cover;
+    padding: 5% 55% 25% 5%;
+    position: relative;
+    z-index:1;
+}
+
+.banner::after{
+    content: '';
+    background-color: black;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    opacity: 0-4;
+    width: 100%;
+    height: 100%;
+}
