@@ -1,3 +1,7 @@
-.menu{
+#menu{
     background-color: #10105C;
+
+}
+#habitacion,#home,#hoteles{
+    color: aliceblue;
 }

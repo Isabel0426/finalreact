@@ -8,7 +8,8 @@ export function Rutas(){
         <div>
             <Menu>
                 <Routes>
-                    <Route path="/" element={<Home/>}/>
+                    <Route path="/Home" element={<Home/>}/>
+                    <Route path="/habitaciones" element={<Habitaciones/>}/>
                 </Routes>
             </Menu>
         </div>

@@ -1,4 +1,5 @@
 export async function ServicioReserva(datos){
+    console.log("estamos en el servicio")
     //URI
     const URI=("https://servercomfama.herokuapp.com/viajescomfama/reserva")
     //PETICION 
@@ -9,8 +10,8 @@ export async function ServicioReserva(datos){
 
     }
     //CONSUMO
-    let respuesta=await fetch(URI,PETICION)
-    let datos=await respuesta.json()
+    // let respuesta=await fetch(URI,PETICION)
+    // let resultado=await respuesta.json()
 
-    return respuesta
+    // return resultado
 }
