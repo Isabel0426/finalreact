@@ -1,17 +1,15 @@
 export async function ServicioReserva(datos){
-    console.log("estamos en el servicio")
-    //URI
-    const URI=("https://servercomfama.herokuapp.com/viajescomfama/reserva")
-    //PETICION 
+
+    console.log(datos)
+    const URI="https://servercomfama.herokuapp.com/viajescomfama/reserva"
     const PETICION={
-        method:"POST",
+        method:'POST',
         headers:{"Content-Type":"application/json"},
-        body:JSON.stringify(datos)//volviendo un dato a json
-
+        body:JSON.stringify(datos)
     }
-    //CONSUMO
-    // let respuesta=await fetch(URI,PETICION)
-    // let resultado=await respuesta.json()
 
-    // return resultado
+    let respuesta=await fetch(URI,PETICION)
+    let resultado=await respuesta.json()
+    return resultado
+
 }

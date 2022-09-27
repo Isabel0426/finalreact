@@ -1,45 +1,45 @@
-import { useState } from "react"
-import { ServicioReserva } from "../services/ServicioReserva/SerivicioReserva"
+import { useState,useEffect } from "react"
+import { ServicioReserva } from "../services/ServicioReserva/SerivicioReserva.js"
+
 import Swal from 'sweetalert2'
 
-export function Formularioreserva(HabitacionSeleccionada){
-    console.log(HabitacionSeleccionada)
- const [entrada,setEntrada]=useState("")
- const [salida,setSalida]=useState("")
- const [adultos,setAdultos]=useState("")
- const [ninos,setNinos]=useState("")
+export function Formularioreserva({datex}){
 
-function Enviardatos(evento){
-  evento.preventDefault()
+    const[entrada,setEntrada]=useState("")
+    const[salida,setSalida]=useState("")
+    const[adultos,setAdultos]=useState("")
+    const[ninos,setNinos]=useState("")
 
-  let datos={
-    "idHabitacion":HabitacionSeleccionada,
-    "fechaEntrada":entrada,
-    "fechaSalida":salida,
-    "numeroNinos":ninos,
-    "numeroAdultos":adultos
-  }
-  ServicioReserva(datos)
-  .then(function(respuesta){
-    Swal.fire({
-        title: respuesta.mensaje,
-        showClass: {
-          popup: 'animate__animated animate__fadeInDown'
-        },
-        hideClass: {
-          popup: 'animate__animated animate__fadeOutUp',
-          timer:1500
+    function EnviarDatos(evento){
+        evento.preventDefault()
+        let datos={
+            "idHabitacion":datex,
+            "fechaEntrada":entrada,
+            "fechaSalida":salida,
+            "numeroNinos":ninos,
+            "numeroAdultos":adultos
         }
-      })
-  })
-}
+        console.log(datos)
+        ServicioReserva(datos)
+        .then(function(respuesta){
+            console.log(respuesta);
+            Swal.fire({
+                position: 'center',
+                icon: 'info',
+                title: respuesta.mensaje,
+                showConfirmButton: false,
+                timer: 1500
+            })
+        })
+    }
 
     return(
+
         <>
 
             <div className="row">
                 <div className="col-12">
-                    <form className="" onSubmit={Enviardatos} >
+                    <form className="" onSubmit={EnviarDatos}>
 
                         <div className="row">
                             <div className="col-12 col-md-8 text-white">
@@ -57,12 +57,13 @@ function Enviardatos(evento){
                                 <div className="input-group mb-3">
                                     <span className="input-group-text"><i className="bi bi-calendar2-date"></i></span>
                                     <input 
-                                    type="Date" 
-                                    className="form-control shadow"
-                                    onChange={(evento)=>{
-                                      setEntrada(evento.target.value)
-                                    }}
-                                    value={entrada}
+                                        type="Date" 
+                                        id="entrada" 
+                                        onChange={(evento)=>{
+                                            setEntrada(evento.target.value) 
+                                        }}
+                                        value={entrada} 
+                                        className="form-control shadow"
                                     />
                                 </div>
                             </div>
@@ -71,12 +72,13 @@ function Enviardatos(evento){
                                 <div className="input-group mb-3">
                                     <span className="input-group-text"><i className="bi bi-calendar2-date"></i></span>
                                     <input 
-                                    type="Date" 
-                                    className="form-control shadow"
-                                    onChange={(evento)=>{
-                                      setSalida(evento.target.value)
-                                    }}
-                                    value={salida}
+                                        type="Date" 
+                                        id="salida"
+                                        onChange={(evento)=>{
+                                            setSalida(evento.target.value) 
+                                        }}
+                                        value={salida} 
+                                        className="form-control shadow"
                                     />
                                 </div>
                             </div>
@@ -89,12 +91,11 @@ function Enviardatos(evento){
                                     <span className="input-group-text"><i className="bi bi-person-fill"></i></span>
                                     <select 
                                         className="form-select"
+                                        defaultValue="---"
                                         onChange={(evento)=>{
-                                          setAdultos(evento.target.value)
+                                            setAdultos(evento.target.value)
                                         }}
-                                        value={adultos}
-                                        defaultValue="1"
-                                        > 
+                                    >
                                         <option value="1">---</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
@@ -109,11 +110,9 @@ function Enviardatos(evento){
                                     <select 
                                         className="form-select"
                                         onChange={(evento)=>{
-                                          setNinos(evento.target.value)
+                                            setNinos(evento.target.value)
                                         }}
-                                        value={ninos}
-                                        defaultValue="0"
-                                        >
+                                    >
                                         <option value="1">---</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
@@ -128,6 +127,12 @@ function Enviardatos(evento){
                     </form>
                 </div>
             </div>
+
+            
+        
         </>
+
     )
+
+
 }
